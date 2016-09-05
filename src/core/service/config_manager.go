@@ -55,6 +55,20 @@ func (cm *ConfigManager) InitializeGlobalConfigFromJson(confJson string) {
 	fmt.Println("Global Config Created from Json string")
 }
 
+func (cm *ConfigManager) InitializeAppConfigFromJson(confJson string) {
+	//Check if the ApplicationConfig is already initialized
+	if config.ApplicationConfig == nil {
+		fmt.Println("Application Config type is not registered")
+		return
+	}
+
+	err := json.Unmarshal([]byte(confJson), config.ApplicationConfig)
+	if err != nil {
+		panic(fmt.Sprintf("Incorrect Json %s \n %s", confJson, err))
+	}
+	fmt.Println("Application Config Created from Json string")
+}
+
 // UpdateConfigFromEnv updates provided config from environment variables
 func (cm *ConfigManager) UpdateConfigFromEnv(conf interface{}, ty string) {
 	if conf == nil {
