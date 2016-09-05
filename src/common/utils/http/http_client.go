@@ -109,6 +109,8 @@ func httpExecuter(req *http.Request, resp *http.Response, headers map[string]str
 	if err != nil {
 		return ret, err
 	}
+	defer resp.Body.Close()
+
 	// read http status
 	ret.HttpStatus = constants.HttpCode(resp.StatusCode)
 
