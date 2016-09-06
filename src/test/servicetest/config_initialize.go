@@ -37,21 +37,6 @@ var globalConfigJson = `
 	}
    }`
 
-var appConfigJson = `
-	{
-	   "Hello":{
-	      "ResponseHeaders":{
-	         "CacheControl":{
-	            "ResponseType":"public",
-	            "NoCache":false,
-	            "NoStore":false,
-	            "MaxAgeInSeconds":300
-	         }
-	      }
-	   }
-	}
-`
-
 func initTestConfig() {
 	cm := new(service.ConfigManager)
 	cm.InitializeGlobalConfigFromJson(globalConfigJson)

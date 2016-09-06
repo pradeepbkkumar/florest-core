@@ -21,14 +21,11 @@ var globalConfigJson = `
 	   "Performance":{  
 	      "UseCorePercentage":100,
 	      "GCPercentage":1000
-	   }
-   }`
-
-var appConfigJson = `
-	{
-	   "Hello":{  
-	      "ResponseHeaders":{  
-	         "CacheControl":{  
+	   },
+	   "ApplicationConfig":{
+	   "Hello":{
+	      "ResponseHeaders":{
+	         "CacheControl":{
 	            "ResponseType":"public",
 	            "NoCache":false,
 	            "NoStore":false,
@@ -37,10 +34,10 @@ var appConfigJson = `
 	      }
 	   }
 	}
-`
+   }`
+
 
 func initTestConfig() {
 	cm := new(service.ConfigManager)
 	cm.InitializeGlobalConfigFromJson(globalConfigJson)
-	cm.InitializeAppConfigFromJson(appConfigJson)
 }
