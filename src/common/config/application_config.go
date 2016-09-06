@@ -56,5 +56,3 @@ type ProfilerConfig struct {
 
 //Global ApplicationConfig Singleton
 var GlobalAppConfig = new(AppConfig)
-
-var ApplicationConfig interface{}
