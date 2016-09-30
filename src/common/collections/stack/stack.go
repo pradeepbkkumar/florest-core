@@ -1,4 +1,8 @@
-package collections
+package stack
+
+import (
+	"github.com/jabong/florest-core/src/common/collections/utils"
+)
 
 //Element for the Stack
 type element struct {
@@ -33,6 +37,36 @@ func (s *Stack) Pop() (v interface{}) {
 //Check if Stack is empty
 func (s *Stack) IsEmpty() bool {
 	return s.size == 0
+}
+
+func (s *Stack) Size() int {
+	return s.size
+}
+
+func (s *Stack) Clear() {
+	s.top = nil
+	s.size = 0
+}
+
+func (s *Stack) Values() []interface{} {
+	current := s.top
+	values := make([]interface{}, s.size)
+	for current != nil {
+		values = append(values, current)
+		current = current.next
+	}
+	return values
+}
+
+func (s *Stack) Contains(keys ...interface{}) bool {
+	elements := s.Values()
+	elementsMap := utils.ConvertArrayToMap(elements)
+	for _, key := range keys {
+		if _, found := elementsMap[key]; !found {
+			return false
+		}
+	}
+	return true
 }
 
 //Create a deepcopy of the node stack
