@@ -1,17 +1,7 @@
-// Copyright (c) 2015, Emir Pasic. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
-// Package redblacktree implements a red-black tree.
-//
-// Used by TreeSet and TreeMap.
-//
-// Structure is not thread safe.
-//
-// References: http://en.wikipedia.org/wiki/Red%E2%80%93black_tree
 package rbtree
 
 import (
+	_ "fmt"
 	"github.com/jabong/florest-core/src/common/collections"
 	"github.com/jabong/florest-core/src/common/collections/utils"
 )
@@ -256,10 +246,12 @@ func (t *Tree) Right() *Node {
 	return current
 }
 
+// Iterator returns a stateful iterator used for iterating over all the entries of the tree
 func (t *Tree) Iterator() collections.Iterator {
 	return &Iterator{tree: t, node: nil, state: begin, nextCalled: true, hasNext: false}
 }
 
+// GetComparator returns the comparator associated with this tree
 func (t *Tree) GetComparator() collections.Comparator {
 	return t.Comparator
 }
@@ -441,6 +433,7 @@ func (t *Tree) rotateRight(node *Node) {
 	node.Parent = left
 }
 
+// Searches the given key in the tree
 func (t *Tree) search(key interface{}) *Node {
 	node := t.Root
 	for node != nil {
@@ -457,6 +450,7 @@ func (t *Tree) search(key interface{}) *Node {
 	return nil
 }
 
+// Replaces the oldNode with the newNode
 func (t *Tree) replaceNode(oldNode *Node, newNode *Node) {
 	if oldNode.Parent == nil {
 		t.Root = newNode
